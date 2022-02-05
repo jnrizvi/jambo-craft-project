@@ -5,13 +5,13 @@ import './App.css';
 
 function App() {
   const [description, setDescription] = useState("Choose a city and submit to see its description.")
-  const [currentWeather, setCurrentWeather] = useState("Choose a city and submit to see its current weather.")
+  const [currentWeather, setWeather] = useState("Choose a city and submit to see its current weather.")
 
   return (
     <div className="App">
       <Form 
         setDescription={setDescription}
-        setCurrentWeather={setCurrentWeather}
+        setWeather={setWeather}
       />
       <p>{description}</p>
       <p>{currentWeather}</p>

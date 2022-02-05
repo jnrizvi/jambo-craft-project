@@ -1,21 +1,20 @@
 import { useState } from "react";
 import axios from 'axios';
 
-export default function Form({ setDescription, setCurrentWeather }) {
+export default function Form({ setDescription, setWeather }) {
   const [option, setOption] = useState("");
   const optionsList = ["", "London", "Paris", "Berlin", "California", "Edmonton"];
 
   const handleSubmit = (event) => {
-    // alert('The city you chose is: ' + option);
-    axios.get('/api/city', {
+    axios.get('/api/cityInfo', {
       params: {
-        name: option,
-        labels: []
+        name: option
       }
     })
       .then(res => {
         setDescription(res.data.description)
-        setCurrentWeather(res.data.currentWeather)
+        let weatherSummary = `Currently ${res.data.weather.current}°C with a high of ${res.data.weather.high}°C and a low of ${res.data.weather.low}°C`
+        setWeather(weatherSummary)
       })
     event.preventDefault();
   }
