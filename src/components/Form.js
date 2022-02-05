@@ -3,11 +3,16 @@ import axios from 'axios';
 
 export default function Form({ setDescription, setCurrentWeather }) {
   const [option, setOption] = useState("");
-  const optionsList = ["London", "Paris", "Berlin", "New York", "Edmonton"];
+  const optionsList = ["", "London", "Paris", "Berlin", "New York", "Edmonton"];
 
   const handleSubmit = (event) => {
     // alert('The city you chose is: ' + option);
-    axios.get('/api/city')
+    axios.get('/api/city', {
+      params: {
+        name: option,
+        labels: []
+      }
+    })
       .then(res => {
         setDescription(res.data.description)
         setCurrentWeather(res.data.currentWeather)
@@ -21,7 +26,7 @@ export default function Form({ setDescription, setCurrentWeather }) {
         Choose a city:
         <select value={option} onChange={(e) => setOption(e.target.value)}>            
           {optionsList.map((item, index) => {
-            return <option key={index} value={item}>{item}</option> 
+            return <option key={index} defaultValue={optionsList[0]}>{item}</option> 
           })}
         </select>
       </label>
