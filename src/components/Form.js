@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export default function Form({ setDescription, setCurrentWeather }) {
   const [option, setOption] = useState("");
-  const optionsList = ["", "London", "Paris", "Berlin", "New York", "Edmonton"];
+  const optionsList = ["", "London", "Paris", "Berlin", "California", "Edmonton"];
 
   const handleSubmit = (event) => {
     // alert('The city you chose is: ' + option);
