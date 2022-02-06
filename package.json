@@ -19,7 +19,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-
+  "proxy": "https://jambo-craft-project.herokuapp.com/",
   "eslintConfig": {
     "extends": [
       "react-app",
