@@ -18,6 +18,7 @@ app.get('/api/cityInfo', (req, res) => {
     
     axios.get(locationQuery)
       .then(result => {
+        console.log(result)
         const whereOnEarthID = result.data[0].woeid;
         const decriptionQuery = `https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${name}`
         const weatherQuery = `https://www.metaweather.com/api/location/${whereOnEarthID}/`
