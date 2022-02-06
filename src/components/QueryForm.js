@@ -3,8 +3,8 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 export default function QueryForm({ setDescription, setWeather }) {
-  const [option, setOption] = useState("");
-  const optionsList = ["", "London", "Paris", "Berlin", "Seattle", "Edmonton"];
+  const [option, setOption] = useState("London");
+  const optionsList = ["London", "Paris", "Berlin", "Seattle", "Edmonton"];
 
   const handleSubmit = (event) => {
     axios.get('/api/cityInfo', {
@@ -14,7 +14,7 @@ export default function QueryForm({ setDescription, setWeather }) {
     })
       .then(res => {
         setDescription(res.data.description)
-        let weatherSummary = `Currently ${res.data.weather.current}°C with a high of ${res.data.weather.high}°C and a low of ${res.data.weather.low}°C`
+        let weatherSummary = `The weather in ${option} is currently ${res.data.weather.current}°C with a high of ${res.data.weather.high}°C and a low of ${res.data.weather.low}°C`
         setWeather(weatherSummary)
       })
     event.preventDefault();
@@ -23,13 +23,12 @@ export default function QueryForm({ setDescription, setWeather }) {
   return (
     <Form onSubmit={handleSubmit}>
       <Label>
-        Select a city:
         <Select value={option} onChange={(e) => setOption(e.target.value)}>            
           {optionsList.map((item, index) => {
             return <option key={index} defaultValue={optionsList[0]}>{item}</option> 
           })}
         </Select>
-        <input type="submit" value="Go" />
+        <Input type="submit" value="Search" />
       </Label>
       
     </Form>
@@ -38,7 +37,6 @@ export default function QueryForm({ setDescription, setWeather }) {
 
 const Form = styled.form`
   display: flex;
-  
 `;
 
 const Label = styled.label`
@@ -48,16 +46,17 @@ const Label = styled.label`
   flex-grow: 1;
 `;
 
-const Span = styled.span`
-  // margin-right: 0.25rem;
-`;
-
 const Select = styled.select`
-  flex-grow: 0.9;
+  flex-grow: 0.95;
 `;
 
 const Input = styled.input`
-  border-width:0px;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
+  color: white;
+  background-color: #4364F7;
+  transition: 0.2s;
+  &:hover {
+    background-color: #6FB1FC;
+  }
 `;

@@ -29,7 +29,7 @@ app.get('/api/cityInfo', (req, res) => {
         ])
         .then(axios.spread((data1, data2) => {
           let extract = Object.values(data1.data.query.pages)[0].extract
-          extract = extract.substring(0, 500) + " ...";
+          extract = extract.substring(0, 300) + " ...";
           
           let weatherObj = data2.data.consolidated_weather[0]
           let simpleWeatherObj = {

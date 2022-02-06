@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
 import QueryForm from './components/QueryForm';
-import './App.css';
 
 function App() {
   const [description, setDescription] = useState("Choose a city and submit to see its description.")
@@ -16,7 +15,7 @@ function App() {
           setWeather={setWeather}
         />
         <Text>{description}</Text>
-        <Text style={{ flexGrow: 1 }}>{currentWeather}</Text>
+        <Text>{currentWeather}</Text>
       </Widget>
     </AppContainer>
   );
@@ -56,14 +55,12 @@ const WidgetTitle = styled.h1`
 `;
 
 const Text = styled.p`
-  // height: 35%;
+  height: 40%;
   padding: 1rem;
   margin-bottom: 0;
-  color: dimgray;
   background-color: whitesmoke;
   font-size: 14px;
   line-height: 1.5rem;
   text-justify: inter-word;
-  // overflow: scroll;
   border-radius: 0.5rem;
 `;
